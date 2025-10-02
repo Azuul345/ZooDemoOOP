@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace ZooDemo
 {
-    internal class Elephant : Animal, ITrick
+    internal class Elephant : Animal, ITrick, ICanRun
     {
-        public Elephant(string name, int age, int startHP) : base(name, age, startHP)
+        public Elephant(string name, int age, int startHP, int maxHp) : base(name, age, startHP, maxHp)
         {
+            Diet = DietType.Herbivore;
         }
 
         public override double DailyFoodKg()
@@ -25,5 +26,11 @@ namespace ZooDemo
         {
             return "Trunck noise";
         }
+
+        public double CanRUn()
+        {
+            return 1.5;
+        }
+
     }
 }

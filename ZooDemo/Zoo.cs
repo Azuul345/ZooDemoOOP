@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static ZooDemo.Animal;
 
 namespace ZooDemo
 {
@@ -32,7 +34,8 @@ namespace ZooDemo
                 for (int i = 0; i < animals.Count; i++)
                 {
                     Animal a = animals[i];
-                    Console.WriteLine($"{i+1}. {a.Info()}");
+                    //Console.WriteLine($"{i+1}. {a.Info()}");
+                    Console.WriteLine($"{i + 1}. {a}");
                 }
             }
         }
@@ -50,7 +53,7 @@ namespace ZooDemo
         public void ShowFeedingPLan()
         {
             Console.WriteLine("Food Plan, KG/Day");
-            foreach(Animal a in animals)
+            foreach (Animal a in animals)
             {
                 Console.WriteLine($"{a.Name} eats {a.DailyFoodKg()} kg");
             }
@@ -60,7 +63,7 @@ namespace ZooDemo
         public void ShowTricks()
         {
             Console.WriteLine("Tricks");
-            foreach(Animal a in animals)
+            foreach (Animal a in animals)
             {
                 ITrick t = a as ITrick;
                 if (t != null)
@@ -73,11 +76,11 @@ namespace ZooDemo
                 }
             }
         }
-
+         
         public void ShowRunningSpeed()
         {
             Console.WriteLine("Speed capacity");
-            foreach(Animal a in animals)
+            foreach (Animal a in animals)
             {
                 ICanRun r = a as ICanRun;
                 if (r != null)
@@ -91,16 +94,109 @@ namespace ZooDemo
         {
             double sum = 0;
 
-            foreach(Animal a in animals)
+            foreach (Animal a in animals)
             {
                 sum += a.DailyFoodKg();
             }
             Console.WriteLine($"Total consumtion is: {sum}");
         }
 
+        public Animal? FindByName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return null;
+            }
+            else
+            {
+                for (int i = 0; i < animals.Count; i++)
+                {
+                    if (name.Equals(animals[i].Name))
+                    {
+                        return animals[i];
+                    }
+
+                }
+                return null;
+            }
+        }
+
+        public void ListByDiet(DietType diet)
+        {
+            foreach (Animal a in animals)
+            {
+                if (diet == a.Diet)
+                {
+                    Console.WriteLine(a.Name);
+                }
+            }
+
+        }
+        public void ListAllAnimalsBydiet()
+        {
+            Console.WriteLine("**Carnivors**");
+            foreach (Animal a in animals)
+            {
+                if (DietType.Carnivor == a.Diet)
+                {
+                    Console.WriteLine(a.Name);
+                }
+            }
+            Console.WriteLine("**Herbivore**");
+            foreach (Animal a in animals)
+            {
+                if (DietType.Herbivore == a.Diet)
+                {
+                    Console.WriteLine(a.Name);
+                }
+            }
+            Console.WriteLine("**Omnivore**");
+            foreach (Animal a in animals)
+            {
+                if (DietType.Omnivore == a.Diet)
+                {
+                    Console.WriteLine(a.Name);
+                }
+            }
+        }
+
+        public void ShowFlights()
+        {
+            Console.WriteLine("Flying Speed");
+            foreach(Animal a in animals)
+            {
+                IFly f = a as IFly;
+                if (f != null)
+                {
+                    Console.WriteLine($"{a.Name} flyes at {f.FlyspeedKmh()}");
+                }
+            }
+        }
 
 
+        public void ShowRunnersSorted()
+        {
+            Console.WriteLine("Speed List");
+            List<(Animal a, double speed)> runlist = new List<(Animal a, double speed )>();
+           
+            foreach (Animal a in animals)
+            {
+                ICanRun r = a as ICanRun;
+                if (r != null)
+                {
+                    double s = r.CanRUn();
+                    runlist.Add((a,s));
+                }
+            }
+            runlist.Sort((x, y) => y.speed.CompareTo(x.speed));
 
+            for(int i =0; i < runlist.Count; i++)
+            {
+                (Animal a, double speed) = runlist[i];
+                Console.WriteLine($"{i+1}. {a.Name} - {speed} km/h ");
+            }
+
+        }
 
     }
 }

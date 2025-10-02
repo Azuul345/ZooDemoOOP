@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace ZooDemo
 {
-    internal class Parrot : Animal, ITrick
+    internal class Parrot : Animal, ITrick, IFly
     {
-        public Parrot(string name, int age, int startHP) : base(name, age, startHP)
+        public Parrot(string name, int age, int startHP, int maxHp) : base(name, age, startHP, maxHp)
         {
-
+            Diet = DietType.Omnivore;
         }
-
 
         public override double DailyFoodKg()
         {
@@ -28,5 +27,13 @@ namespace ZooDemo
         {
             return "Squeek";
         }
+
+        public double FlyspeedKmh()
+        {
+            return 50.5;
+        }
+
+        
+        
     }
 }
