@@ -8,6 +8,8 @@ namespace ZooDemo
 {
     public abstract class Animal
     {
+        protected double DietMultiplier = 1;
+
         public static int TotalCount = 0;
         private int hp;
         private int _maxHP;
@@ -39,7 +41,7 @@ namespace ZooDemo
                 }
             }
         }
-        public enum DietType { Carnivor, Herbivore, Omnivore}
+        public enum DietType { Carnivore, Herbivore, Omnivore}
 
         public DietType Diet { get ; protected set; }
 
@@ -56,6 +58,7 @@ namespace ZooDemo
             
         }
 
+        
 
         //has to be overwriten and has no body
         public abstract string Speak();
@@ -63,7 +66,7 @@ namespace ZooDemo
         //can be overwritten and has a body
         public virtual double DailyFoodKg()
         {
-            return 1.0;
+            return 1.0 * DietMultiplier;
         }
         
         public string Info()
@@ -78,14 +81,20 @@ namespace ZooDemo
             return Info() + " blablabla";
         }
 
-        public int Heal(int damage)
+        public int Heal(int amount)
         {
+            HP += amount;
             return HP;
         }
 
         public int BirthDay()
         {
             return ++Age;
+        }
+
+        public string GetReportLine()
+        {
+            return $"{Name} - Age {Age}; Health {HP}; Daily Food Consumption {DailyFoodKg()} kg";
         }
 
 

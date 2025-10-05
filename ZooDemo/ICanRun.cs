@@ -8,6 +8,6 @@ namespace ZooDemo
 {
     internal interface ICanRun
     {
-        double CanRUn();
+        double CanRun();
     }
 }

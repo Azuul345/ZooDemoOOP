@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZooDemo
 {
-    public interface IFly
+    internal interface IFly
     {
         double FlyspeedKmh();
     }

@@ -8,22 +8,24 @@ namespace ZooDemo
 {
     public class Lion : Animal, ICanRun
     {
+        public static int Count { get; private set; } = 0;
+
+
         public Lion(string name, int age, int startHP, int maxHp) : base(name, age, startHP, maxHp)
         {
-            Diet = DietType.Carnivor;
+            Diet = DietType.Carnivore;
+            DietMultiplier = 7.5;
+            Count++;
         }
 
-        public override double DailyFoodKg()
-        {
-            return 7.5;
-        }
+        
 
         public override string Speak()
         {
             return "Roar";
         }
 
-        public double CanRUn()
+        public double CanRun()
         {
             return 5.5;
         }

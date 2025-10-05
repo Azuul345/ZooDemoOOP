@@ -8,9 +8,12 @@ namespace ZooDemo
 {
     internal class Parrot : Animal, ITrick, IFly
     {
+        public static int Count { get; private set; } = 0;
+
         public Parrot(string name, int age, int startHP, int maxHp) : base(name, age, startHP, maxHp)
         {
             Diet = DietType.Omnivore;
+            Count++;
         }
 
         public override double DailyFoodKg()

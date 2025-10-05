@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZooDemo
 {       //totalt abstract
-    public interface ITrick
+    internal interface ITrick
     {
         string DoTrick();
 

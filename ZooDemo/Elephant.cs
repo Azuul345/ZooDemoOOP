@@ -8,6 +8,8 @@ namespace ZooDemo
 {
     internal class Elephant : Animal, ITrick, ICanRun
     {
+        //protected double DietMultiplyer = 10.5;
+
         public Elephant(string name, int age, int startHP, int maxHp) : base(name, age, startHP, maxHp)
         {
             Diet = DietType.Herbivore;
@@ -27,7 +29,7 @@ namespace ZooDemo
             return "Trunck noise";
         }
 
-        public double CanRUn()
+        public double CanRun()
         {
             return 1.5;
         }

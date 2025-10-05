@@ -20,6 +20,24 @@ namespace ZooDemo
             animals.Add(animal);
         }
 
+        public void PrintReport()
+        {
+            foreach(Animal animal in animals)
+            {
+                Console.WriteLine(animal.GetReportLine());
+            }
+        }
+
+        public void ShowSpeciesCount()
+        {
+            int lions = Lion.Count;
+            int parrot = Parrot.Count;
+
+            Console.WriteLine($"The amount of Lions in the zoo are {lions}");
+            Console.WriteLine($"The amount of Parrots in the zoo are {parrot}");
+        }
+
+
         public void ListAll()
         {
             if (animals.Count == 0)
@@ -85,7 +103,7 @@ namespace ZooDemo
                 ICanRun r = a as ICanRun;
                 if (r != null)
                 {
-                    Console.WriteLine($"{a.Name} runs {r.CanRUn()}");
+                    Console.WriteLine($"{a.Name} runs {r.CanRun()}");
                 }
             }
         }
@@ -132,12 +150,12 @@ namespace ZooDemo
             }
 
         }
-        public void ListAllAnimalsBydiet()
+        public void ListAllAnimalsByDiet()
         {
             Console.WriteLine("**Carnivors**");
             foreach (Animal a in animals)
             {
-                if (DietType.Carnivor == a.Diet)
+                if (DietType.Carnivore == a.Diet)
                 {
                     Console.WriteLine(a.Name);
                 }
@@ -184,7 +202,7 @@ namespace ZooDemo
                 ICanRun r = a as ICanRun;
                 if (r != null)
                 {
-                    double s = r.CanRUn();
+                    double s = r.CanRun();
                     runlist.Add((a,s));
                 }
             }
